@@ -44,6 +44,12 @@ spec:
               allowed_organizations: xXbuddycloudXx
               allow_sign_up: true
               scopes: user:email,read:org
+          ingress:
+            enabled: true
+            hosts:
+              - andrew-bc-1.sugarglider-moth.ts.net
+            path: /grafana
+            pathType: Prefix
         alertmanager:
           enabled: false
   destination:
