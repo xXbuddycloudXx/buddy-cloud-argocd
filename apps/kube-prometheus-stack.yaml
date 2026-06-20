@@ -27,16 +27,10 @@ spec:
             enabled: true
             storageClassName: local-path
             size: 2Gi
-          ingress:
-            enabled: true
-            hosts:
-              - andrew-bc-1.sugarglider-moth.ts.net
-            path: /grafana
-            pathType: Prefix
-          grafana.ini:
-            server:
-              root_url: http://andrew-bc-1.sugarglider-moth.ts.net/grafana
-              serve_from_sub_path: true
+          sidecar:
+            datasources:
+              defaultDatasourceEnabled: true
+          additionalDataSources: []
         alertmanager:
           enabled: false
   destination:
