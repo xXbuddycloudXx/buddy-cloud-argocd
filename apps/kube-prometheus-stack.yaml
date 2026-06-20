@@ -37,6 +37,8 @@ spec:
             server:
               root_url: http://andrew-bc-1.sugarglider-moth.ts.net/grafana
               serve_from_sub_path: true
+            users:
+              auto_assign_org_role: Editor
             auth.github:
               enabled: true
               client_id: $__env{GF_AUTH_GITHUB_CLIENT_ID}
