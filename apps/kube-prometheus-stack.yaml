@@ -27,6 +27,10 @@ spec:
             enabled: true
             storageClassName: local-path
             size: 2Gi
+          admin:
+            existingSecret: grafana-admin-credentials
+            userKey: admin-user
+            passwordKey: admin-password
           sidecar:
             datasources:
               defaultDatasourceEnabled: true
