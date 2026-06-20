@@ -12,6 +12,7 @@ spec:
     helm:
       values: |
         loki:
+          isDefault: false
           config:
             limits_config:
               retention_period: 168h
