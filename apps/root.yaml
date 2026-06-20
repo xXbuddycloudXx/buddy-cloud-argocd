@@ -5,10 +5,13 @@ metadata:
   namespace: argocd
 spec:
   project: default
-  source:
-    repoURL: https://github.com/xXbuddycloudXx/buddy-cloud-argocd.git
-    targetRevision: HEAD
-    path: apps
+  sources:
+    - repoURL: https://github.com/xXbuddycloudXx/buddy-cloud-argocd.git
+      targetRevision: HEAD
+      path: apps
+    - repoURL: https://github.com/xXbuddycloudXx/buddy-cloud-argocd.git
+      targetRevision: HEAD
+      path: manifests
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
