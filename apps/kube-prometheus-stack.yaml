@@ -31,6 +31,17 @@ spec:
             datasources:
               defaultDatasourceEnabled: true
           additionalDataSources: []
+          grafana.ini:
+            server:
+              root_url: http://andrew-bc-1.sugarglider-moth.ts.net/grafana
+              serve_from_sub_path: true
+            auth.github:
+              enabled: true
+              client_id: Ov23liOi7ymyoeRJACx1
+              client_secret: 112bf9d657bc0e6423fd59ca01319f670089246d
+              allowed_organizations: xXbuddycloudXx
+              allow_sign_up: true
+              scopes: user:email,read:org
         alertmanager:
           enabled: false
   destination:
