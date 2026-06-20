@@ -1,0 +1,51 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kube-prometheus-stack
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://prometheus-community.github.io/helm-charts
+    chart: kube-prometheus-stack
+    targetRevision: "*"
+    helm:
+      values: |
+        prometheus:
+          prometheusSpec:
+            retention: 7d
+            storageSpec:
+              volumeClaimTemplate:
+                spec:
+                  storageClassName: local-path
+                  accessModes: ["ReadWriteOnce"]
+                  resources:
+                    requests:
+                      storage: 10Gi
+        grafana:
+          persistence:
+            enabled: true
+            storageClassName: local-path
+            size: 2Gi
+          ingress:
+            enabled: true
+            hosts:
+              - andrew-bc-1.sugarglider-moth.ts.net
+            path: /grafana
+            pathType: Prefix
+          grafana.ini:
+            server:
+              root_url: http://andrew-bc-1.sugarglider-moth.ts.net/grafana
+              serve_from_sub_path: true
+        alertmanager:
+          enabled: false
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: monitoring
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
