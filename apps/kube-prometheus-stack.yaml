@@ -31,12 +31,16 @@ spec:
             datasources:
               defaultDatasourceEnabled: true
           additionalDataSources: []
+          env:
+            GF_AUTH_GITHUB_ROLE_ATTRIBUTE_PATH: "contains(groups[*], '@xXbuddycloudXx/buddies') && 'Editor' || 'Viewer'"
           envFromSecrets:
             - name: grafana-github-oauth
           grafana.ini:
             server:
               root_url: http://andrew-bc-1.sugarglider-moth.ts.net/grafana
               serve_from_sub_path: true
+            users:
+              auto_assign_org_role: Editor
             auth.github:
               enabled: true
               client_id: $__env{GF_AUTH_GITHUB_CLIENT_ID}
@@ -44,7 +48,6 @@ spec:
               allowed_organizations: xXbuddycloudXx
               allow_sign_up: true
               scopes: user:email,read:org
-              role_attribute_path: "contains(groups[*], '@xXbuddycloudXx/buddies') && 'Editor' || 'Viewer'"
         alertmanager:
           enabled: false
   destination:
