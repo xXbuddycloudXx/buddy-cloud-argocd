@@ -1,0 +1,93 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: immich
+---
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  name: immich-db-secret
+  namespace: immich
+spec:
+  encryptedData:
+    POSTGRES_DB: AgCpN6HFz9qzjhy+Nub4DhI9WsYQ5mNbV1NCPoOInkdZYtNwx2QN3Q2pVAZ92OO+YpFrUQZGpnXtGoboZgW5QM+3PKLCw7VDnjtSf9iZ9EMoLwXIwRSR1+85m4agah1NHFKFhh1614Qnp5tN+Cos8bg4/8J0DJc9EVdxnCWMgR3g7/V6Anx+4zss2brUT01t0kGelf/Mky9tZH/zaxZ89YUMfePJTfyeazCaMRBKIUNAz94dRjmnPCEq4910QX2zHVYJAXzseLKspzqVLbPq5ATj79DG8dID8Av2XzxdpHTqNDgGePOOFe1uL1zj2XzftcSbkckXdayMlqaJgUucQLf9dFQaQ8Vyxo92RsP6ne9CKcTd8ZsWNPtdB7aaJdvtVJKxV0rM5NHnhPJLAG+YmDdH0uJ+SxVhktgQkEamBkkjQRtF85iirPLw78IcOf/fcSvKM+KGD9bDfR/nvMYd4fEbsRzfs6AxbnBuY+4m8ND34BUqtnimvrz00RSu/JK7L0+VjR+D8oTLqa4Q7JxVZ5ZNLyKkfRRWOe8DB8CLC3O6Z6E3PFjkw/G2HaipRPpC+2af2jDiiTU8PaT0aUKEc/KbxSc4Q2tQYaOazpeorcYgZTvyDWMyBbYmmPFVryGsesfoPzFTFmIeuMa4xFbhCD59EpY1PPYvYW2b1qLYbCGwlDalBLIDouwAKf9XF0OReKGXNiIFrdU=
+    POSTGRES_PASSWORD: AgAnGLi5CaX3oxAqbrrLF4821fblE0iFAfxevBHyYdwvCSFyBmovddbV3LgVsYrLoACd3Roi7DVNBT4C6/tHU1ikymsnc8uoUuOG1ZvSGRIDRpRZlNoS5DDJtml+JdRxx9m18piT2QBnrdcccMjBmW5nPQy0cef5HjjNEbiXhh1u/yCHS512EJ2XmWKrG9vf2B/p91irkqdjRY51rjosJzhbC/ALYmPaA4i+v4ZMEtwBFBFHBm6Et4LWC2O/ttHjbpgRD3iM3cQYTnph1jw3c2ILo4v1hsLXgGAt6T0myVdfK0eUlu0zDA4CDkDvP6dlagqYVuN/WEDw9xU2WvtLoYEgKbEUFlwSpgWfIsFlSYdZivV14NMl4M+F/9eDvnzIrvjL9nae+C06bgclRSs/bOwyvLJ6HRvRgfyNWHujnlrWvbbMXQP95h7+xy1+oWuUIJ+K+uBLUaHBJP86XXztPIpooJ8fYCV01bxAiGRK9AdKai4ZK9iMZr8CviR3YVwg/MAek8KrQus6Qj//NHG8/meVG132ZCbD8r/+sUqYLmWvIfa3Jaj8yuFnPffrnYjHIaQeb2uWKALXjwXNd2LeX6diYPG8r0IY8HdVOcZXeaQ+g6W3BDYovJrh1o1HTyWLJZPfEAP2sQwcvLEDfOKIai7g/b+pC47ucxCkEWCOwzzd8xBNU7xtkHtNgABw15zI1+zIRnvzFcg=
+    POSTGRES_USER: AgB0UUEm5YCbH09F1bTUVjtt9+EWPf0g3fLHuDp7ss4ROiyPhhZiVH4iXbVtYp/6FUrZRyScyMS6t4NQJTQFHPoPUrsFqfqxLvE186TaxUdwY0Zzt3zGqNxpfK+ASutrD5A80ZR/DVOcHKtKk5Uz085TSQr+0YFQ+/Vr2OMKLbBIG+0vptgRUjkG7Ecrroza7smKOHi/aUP1fKo9rhFAuz5w3KMqkStUS6M2NAU8UYnDczpNZZmxm1I7Vh6UbSvnZiXUlIHGwi+qAabQJfbY9d5o3x55/aY5lvC0ODpKW8hv9yyU43B5Uuqq9D1HNtOXdo2LsAKTDK/7dkz2nDTS/FccZuxL8O2nt/n39qRbUuk87WolDjJr93/HPQQ40unuevHXXvJJlnj3uGwS59vAYjSpKxEhFyw65IpXR+m+kSv/HBlMAUZ6Ws5HstZdwQXVN0vPop+4AQn/eDaNfS5QFcir6yLe5uxHw+VVrtSrSSHnuOSOcyBKDoqbqAg23YTTX8ggmIkwr+puhjdctqxuPly6hUVYMQcr25l1BDOtxoXpu/LQUrSz+hzgjKRc4Yurj5NKtiuev2aYX3LVMZw+BpP6JXmLqQZqvZD39FeefSdvpBCHPpNSjPCGvFi8ZVf617WjnHInwYng2kOq+ojcMrY3VkdAV5iM/36a5AmPElNstXqlqZX/QkZ3O2SYsqezpworYXPY4ic=
+  template:
+    metadata:
+      name: immich-db-secret
+      namespace: immich
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: immich-postgres-data
+  namespace: immich
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: nfs
+  resources:
+    requests:
+      storage: 10Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: immich-library
+  namespace: immich
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: nfs
+  resources:
+    requests:
+      storage: 800Gi
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: immich-postgres
+  namespace: immich
+spec:
+  selector:
+    matchLabels:
+      app: immich-postgres
+  serviceName: immich-postgres
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: immich-postgres
+    spec:
+      containers:
+      - name: postgres
+        image: ghcr.io/immich-app/postgres:14-vectorchord0.4.3-pgvectors0.2.0@sha256:bcf63357191b76a916ae5eb93464d65c07511da41e3bf7a8416db519b40b1c23
+        envFrom:
+        - secretRef:
+            name: immich-db-secret
+        volumeMounts:
+        - name: data
+          mountPath: /var/lib/postgresql/data
+        - name: shm
+          mountPath: /dev/shm
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: immich-postgres-data
+      - name: shm
+        emptyDir:
+          medium: Memory
+          sizeLimit: 256Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: immich-postgres
+  namespace: immich
+spec:
+  selector:
+    app: immich-postgres
+  ports:
+  - port: 5432
+    targetPort: 5432
